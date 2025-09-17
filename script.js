@@ -25,19 +25,28 @@ scene.add(dirLight);
 
 // Load FBX model
 const loader = new THREE.FBXLoader();
-loader.load(
-  "models/sample.fbx", // ganti dengan nama file FBX kamu
-  (object) => {
-    object.scale.set(0.01, 0.01, 0.01); // FBX biasanya terlalu besar
-    scene.add(object);
-  },
-  (xhr) => {
-    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-  },
-  (error) => {
-    console.error("Error loading FBX:", error);
-  }
-);
+
+// Load BodyFemale
+loader.load("models/BodyFemale.fbx", (object) => {
+  object.scale.set(0.01, 0.01, 0.01);
+  object.position.set(-1.5, 0, 0); // geser biar tidak numpuk
+  scene.add(object);
+});
+
+// Load Class
+loader.load("models/Class.fbx", (object) => {
+  object.scale.set(0.01, 0.01, 0.01);
+  object.position.set(0, 0, 0);
+  scene.add(object);
+});
+
+// Load Boy
+loader.load("models/Boy.fbx", (object) => {
+  object.scale.set(0.01, 0.01, 0.01);
+  object.position.set(1.5, 0, 0); // geser ke kanan
+  scene.add(object);
+});
+
 
 // Animation loop
 function animate() {
