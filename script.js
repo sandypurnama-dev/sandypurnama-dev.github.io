@@ -22,9 +22,10 @@ const dirLight = new THREE.DirectionalLight(0xffffff, 1);
 dirLight.position.set(5, 10, 7);
 scene.add(dirLight);
 
-// Controls (⚡ PENTING: pakai OrbitControls langsung, bukan THREE.OrbitControls)
-const controls = new OrbitControls(camera, renderer.domElement);
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
+
 
 // Load models.json
 fetch("models/models.json")
