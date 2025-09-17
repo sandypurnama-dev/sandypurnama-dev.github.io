@@ -3,66 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landing Page Example</title>
+  <title>3D Portfolio - Game Dev</title>
+
+  <!-- Google Model Viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <nav>
-    <h2>MyWebsite</h2>
+  <!-- Header -->
+  <header>
+    <h1>MyPortfolio</h1>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <ul id="navMenu">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-
-    <div class="search-container">
-      <input type="text" id="searchBox" placeholder="Search services...">
-      <button id="searchIcon">🔍</button>
-    </div>
-
-    <!-- Hamburger pindah ke paling kanan -->
-    <div class="hamburger" id="hamburger">☰</div>
-  </nav>
-</header>
-
-  <section class="hero" id="home">
-    <h1>Welcome to My Landing Page</h1>
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Hi, I'm Alex 👾</h2>
+    <p>3D Modeler & Game Developer passionate about creating immersive worlds and interactive experiences.</p>
+    <a href="#projects" class="btn">View My Projects</a>
   </section>
 
-  <section id="about">
-    <h2>About Us</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-      Praesent varius urna non urna pulvinar, vitae dictum nunc tincidunt. 
-      Donec vel risus nec erat gravida pretium.</p>
-  </section>
-
-  <section id="services">
-    <h2>Our Services</h2>
-    <div class="services" id="servicesList">
-      <div class="service">Web Development</div>
-      <div class="service">Mobile App Development</div>
-      <div class="service">Game Development</div>
-      <div class="service">UI/UX Design</div>
-      <div class="service">SEO Optimization</div>
-      <div class="service">Cloud Hosting</div>
+  <!-- Projects -->
+  <section class="projects" id="projects">
+    <h2>My 3D Projects</h2>
+    <div class="project-grid" id="projectGrid">
+      <!-- Card akan dimuat dari script.js -->
     </div>
   </section>
 
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: contact@mywebsite.com</p>
-    <p>Phone: +62 812 3456 7890</p>
+  <!-- Skills -->
+  <section class="skills" id="skills">
+    <h2>Skills & Tools</h2>
+    <div class="skill-list">
+      <div class="skill">Blender</div>
+      <div class="skill">Unity</div>
+      <div class="skill">Unreal Engine</div>
+      <div class="skill">ZBrush</div>
+      <div class="skill">Substance Painter</div>
+      <div class="skill">Maya</div>
+    </div>
   </section>
 
-  <footer>
-    <p>&copy; 2025 MyWebsite. All Rights Reserved.</p>
+  <!-- Footer -->
+  <footer id="contact">
+    <p>Contact me: yourname@email.com</p>
+    <p>&copy; 2025 My Portfolio</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="script.js"></script>
 </body>
 </html>
-
