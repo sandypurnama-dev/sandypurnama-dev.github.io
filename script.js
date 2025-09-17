@@ -11,11 +11,7 @@ function searchService() {
   const services = document.querySelectorAll('#servicesList .service');
   services.forEach(service => {
     const text = service.textContent.toLowerCase();
-    if (text.includes(input)) {
-      service.style.display = 'block';
-    } else {
-      service.style.display = 'none';
-    }
+    service.style.display = text.includes(input) ? 'block' : 'none';
   });
 }
 
@@ -24,4 +20,14 @@ document.getElementById('searchBox').addEventListener('keyup', (e) => {
   if (e.key === 'Enter') {
     searchService();
   }
+});
+
+// ====================
+// Hamburger Menu Toggle
+// ====================
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('show');
 });
