@@ -3,20 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>3D Model Viewer</title>
-  <link rel="stylesheet" href="style.css">
-
-<!-- Three.js -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
-<!-- GLTF Loader -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/loaders/GLTFLoader.js"></script>
-<!-- Orbit Controls -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/controls/OrbitControls.js"></script>
-
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas { display: block; }
+  </style>
 </head>
 <body>
-  <h1>My 3D Models</h1>
-  <canvas id="viewer"></canvas>
-
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
