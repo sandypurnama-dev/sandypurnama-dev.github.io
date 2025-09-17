@@ -10,60 +10,64 @@
   </head>
   <body>
     <!-- Import Three.js dari CDN -->
-    <script type="module">
-      import * as THREE from "https://unpkg.com/three@0.150.1/build/three.module.js";
-      import { GLTFLoader } from "https://unpkg.com/three@0.150.1/examples/jsm/loaders/GLTFLoader.js";
-      import { OrbitControls } from "https://unpkg.com/three@0.150.1/examples/jsm/controls/OrbitControls.js";
+<script type="module">
+  import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+  import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
+  import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js";
 
-      // === Setup dasar ===
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(renderer.domElement);
+  // === Setup dasar ===
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x202020);
 
-      // Lighting
-      const light = new THREE.DirectionalLight(0xffffff, 1);
-      light.position.set(5, 10, 7.5);
-      scene.add(light);
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 2, 5);
 
-      // Controls
-      const controls = new OrbitControls(camera, renderer.domElement);
-      camera.position.set(0, 2, 5);
-      controls.update();
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
 
-      // Load models.json
-      fetch("models/models.json")
-        .then((res) => res.json())
-        .then((models) => {
-          const loader = new GLTFLoader();
-          models.forEach((modelFile, i) => {
-            loader.load(
-              `models/${modelFile}`,
-              (gltf) => {
-                gltf.scene.position.x = i * 3;
-                scene.add(gltf.scene);
-              },
-              undefined,
-              (err) => console.error("Error load model:", err)
-            );
-          });
-        })
-        .catch((err) => console.error("Error load JSON:", err));
+  // Lighting
+  const light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.set(5, 10, 7.5);
+  scene.add(light);
 
-      // Render loop
-      function animate() {
-        requestAnimationFrame(animate);
-        controls.update();
-        renderer.render(scene, camera);
-      }
-      animate();
+  // Controls
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
 
-      window.addEventListener("resize", () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
+  // Load models.json
+  fetch("models/models.json")
+    .then((res) => res.json())
+    .then((models) => {
+      const loader = new GLTFLoader();
+      models.forEach((modelFile, i) => {
+        loader.load(
+          `models/${modelFile}`,
+          (gltf) => {
+            gltf.scene.position.x = i * 3;
+            scene.add(gltf.scene);
+          },
+          undefined,
+          (err) => console.error("Error load model:", err)
+        );
       });
-    </script>
+    })
+    .catch((err) => console.error("Error load JSON:", err));
+
+  // Render loop
+  function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener("resize", () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+</script>
+
   </body>
 </html>
