@@ -45,6 +45,13 @@ header nav ul li a:hover {
   color: #ff9800;
 }
 
+/* Hamburger Icon */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
 /* Search Section */
 .search-container {
   display: flex;
@@ -138,13 +145,4 @@ footer {
   padding: 20px;
 }
 
-/* responsive */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .search-container.show input {
-    width: 150px;
-  }
-}
+/* Responsive*
