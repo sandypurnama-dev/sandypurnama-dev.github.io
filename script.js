@@ -1,33 +1,73 @@
-// Toggle search box
-document.getElementById('searchIcon').addEventListener('click', () => {
-  const searchContainer = document.querySelector('.search-container');
-  searchContainer.classList.toggle('show');
-  document.getElementById('searchBox').focus();
-});
-
-// Search filter
-function searchService() {
-  const input = document.getElementById('searchBox').value.toLowerCase();
-  const services = document.querySelectorAll('#servicesList .service');
-  services.forEach(service => {
-    const text = service.textContent.toLowerCase();
-    service.style.display = text.includes(input) ? 'block' : 'none';
-  });
-}
-
-// Trigger search saat tekan Enter
-document.getElementById('searchBox').addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    searchService();
+// Daftar model (setiap project bisa punya lebih dari 1 file untuk di-swipe)
+const projects = [
+  {
+    title: "Character Model",
+    models: ["mymodel.glb", "model2.glb", "model3.glb"]
+  },
+  {
+    title: "Environment Design",
+    models: ["env1.glb", "env2.glb"]
+  },
+  {
+    title: "Weapon Model",
+    models: ["weapon1.glb", "weapon2.glb", "weapon3.glb"]
+  },
+  {
+    title: "Accessories",
+    models: ["hat.glb", "sword.glb", "shield.glb"] // <-- Tambah disini
   }
+];
+
+const grid = document.getElementById("projectGrid");
+
+projects.forEach((project, index) => {
+  let currentIndex = 0;
+
+  // Buat card
+  const card = document.createElement("div");
+  card.className = "model-card";
+
+  // Isi HTML card
+  card.innerHTML = `
+    <model-viewer src="models/${project.models[currentIndex]}"
+                  alt="${project.title}"
+                  auto-rotate
+                  camera-controls
+                  shadow-intensity="1">
+    </model-viewer>
+    <p>${project.title}</p>
+    <div class="card-controls">
+      <button class="prev-btn">Prev</button>
+      <button class="next-btn">Next</button>
+    </div>
+  `;
+
+  // Tambahkan ke grid
+  grid.appendChild(card);
+
+  // Dapatkan element tombol & viewer
+  const viewer = card.querySelector("model-viewer");
+  const prevBtn = card.querySelector(".prev-btn");
+  const nextBtn = card.querySelector(".next-btn");
+
+  // Event tombol Prev
+  prevBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + project.models.length) % project.models.length;
+    viewer.src = `models/${project.models[currentIndex]}`;
+  });
+
+  // Event tombol Next
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % project.models.length;
+    viewer.src = `models/${project.models[currentIndex]}`;
+  });
 });
 
-// ====================
-// Hamburger Menu Toggle
-// ====================
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('navMenu');
-
-hamburger.addEventListener('click', () => {
-  navMenu.classList.toggle('show');
+// Smooth scroll untuk anchor
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function(e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute("href"))
+      .scrollIntoView({ behavior: "smooth" });
+  });
 });
