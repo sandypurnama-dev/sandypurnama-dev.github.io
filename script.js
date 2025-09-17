@@ -33,18 +33,33 @@ const dirLight = new THREE.DirectionalLight(0xffffff, 1);
 dirLight.position.set(5, 10, 7.5);
 scene.add(dirLight);
 
-// Load GLTF/GLB
-const loader = new GLTFLoader();
-loader.load(
-  "models/yourmodel.glb", // ganti nama model sesuai file kamu
-  (gltf) => {
-    scene.add(gltf.scene);
-  },
-  undefined,
-  (error) => {
-    console.error("Error loading model:", error);
-  }
-);
+// Load models.json
+fetch("models/models.json")
+  .then((res) => res.json())
+  .then((models) => {
+    models.forEach((file, index) => {
+      loadModel("models/" + file, index);
+    });
+  })
+  .catch((err) => console.error("Error loading models.json:", err));
+
+// Function load model
+function loadModel(path, index) {
+  const loader = new GLTFLoader();
+  loader.load(
+    path,
+    (gltf) => {
+      const model = gltf.scene;
+      model.position.set(index * 2, 0, 0); // biar ga numpuk
+      model.scale.set(0.5, 0.5, 0.5); // sesuaikan skala
+      scene.add(model);
+    },
+    undefined,
+    (error) => {
+      console.error("Error loading model:", path, error);
+    }
+  );
+}
 
 // Resize
 window.addEventListener("resize", () => {
