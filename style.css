@@ -45,6 +45,43 @@ header nav ul li a:hover {
   color: #ff9800;
 }
 
+/* Search Section */
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-container input {
+  width: 0;
+  opacity: 0;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.4s ease;
+  margin-right: 5px;
+}
+
+.search-container.show input {
+  width: 200px;
+  opacity: 1;
+}
+
+.search-container button {
+  background: #ff9800;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.search-container button:hover {
+  background: #e68900;
+}
+
 .hero {
   height: 90vh;
   display: flex;
@@ -61,28 +98,6 @@ header nav ul li a:hover {
 .hero h1 {
   font-size: 3rem;
   margin-bottom: 20px;
-}
-
-.hero input {
-  padding: 10px;
-  width: 300px;
-  border: none;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.hero button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background: #ff9800;
-  color: #fff;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.hero button:hover {
-  background: #e68900;
 }
 
 section {
@@ -129,8 +144,7 @@ footer {
     font-size: 2rem;
   }
 
-  .hero input {
-    width: 200px;
-    margin-bottom: 10px;
+  .search-container.show input {
+    width: 150px;
   }
 }
