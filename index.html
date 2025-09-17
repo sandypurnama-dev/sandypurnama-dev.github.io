@@ -1,38 +1,54 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portofolio Sandy Purnama</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f9; }
-    .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    h1 { text-align: center; color: #333; }
-    img { display: block; margin: 20px auto; border-radius: 50%; width: 150px; }
-    h2 { color: #444; margin-top: 30px; }
-    p { line-height: 1.6; color: #555; }
-    a { color: #007acc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-  </style>
+  <title>Sandy Purnama - 3D Portfolio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <img src="https://via.placeholder.com/150" alt="Foto Profil">
+  <header>
     <h1>Sandy Purnama</h1>
-    <p>Halo 👋, saya seorang <b>Web Developer</b> yang suka membuat website modern dan responsif.</p>
+    <p>3D Artist & Model Designer</p>
+  </header>
 
-    <h2>🛠 Keahlian</h2>
-    <p>HTML, CSS, JavaScript, React, GitHub</p>
+  <main>
+    <section class="intro">
+      <h2>About Me</h2>
+      <p>I create 3D models for games, animation, and interactive media. Explore my works below.</p>
+    </section>
 
-    <h2>📂 Proyek</h2>
-    <ul>
-      <li><a href="#">Project 1 - Website Company Profile</a></li>
-      <li><a href="#">Project 2 - Aplikasi To-Do List</a></li>
-    </ul>
+    <section class="viewer">
+      <h2>3D Showcase</h2>
+      <div id="canvas-container"></div>
+    </section>
 
-    <h2>📫 Kontak</h2>
-    <p>Email: sandypurnama@email.com</p>
-    <p><a href="https://github.com/sandypurnama-dev">GitHub</a> | <a href="https://linkedin.com/in/sandypurnama">LinkedIn</a></p>
-  </div>
+    <section class="gallery">
+      <h2>My Works</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://via.placeholder.com/300x200" alt="Model 1">
+          <p>Character Design</p>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/300x200" alt="Model 2">
+          <p>Environment Asset</p>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/300x200" alt="Model 3">
+          <p>Hard Surface Model</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Sandy Purnama | Built with Three.js & GitHub Pages</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+
