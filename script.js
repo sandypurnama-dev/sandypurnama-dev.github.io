@@ -1,6 +1,8 @@
 // Setup scene, camera, renderer
 const canvas = document.getElementById("viewer");
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x222222);
+
 const camera = new THREE.PerspectiveCamera(
   60,
   window.innerWidth / window.innerHeight,
@@ -30,6 +32,7 @@ controls.enableDamping = true;
 fetch("models/models.json")
   .then((res) => res.json())
   .then((models) => {
+    console.log("Daftar model:", models);
     models.forEach((file, index) => {
       loadModel("models/" + file, index);
     });
@@ -43,9 +46,10 @@ function loadModel(path, index) {
     path,
     (gltf) => {
       const model = gltf.scene;
-      model.position.set(index * 2, 0, 0); // geser biar nggak numpuk
-      model.scale.set(0.5, 0.5, 0.5); // sesuaikan skala
+      model.position.set(index * 2, 0, 0); // geser biar tidak menumpuk
+      model.scale.set(0.5, 0.5, 0.5);
       scene.add(model);
+      console.log("Model loaded:", path);
     },
     undefined,
     (error) => {
