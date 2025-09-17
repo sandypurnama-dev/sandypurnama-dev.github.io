@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Three.js FBX Loader</title>
+  <title>FBX Viewer</title>
   <style>
     body { margin: 0; overflow: hidden; }
     canvas { display: block; }
@@ -40,20 +40,16 @@
     dirLight.position.set(5, 10, 7.5);
     scene.add(dirLight);
 
-    // Load FBX
+    // FBX Loader
     const loader = new FBXLoader();
     loader.load(
-      "models/yourmodel.fbx", // ganti sesuai nama file .fbx
-      (object) => {
-        object.scale.set(0.01, 0.01, 0.01); // sesuaikan skala
-        scene.add(object);
+      "models/yourmodel.fbx", // ganti dengan nama file kamu
+      (fbx) => {
+        fbx.scale.set(0.01, 0.01, 0.01); // kecilin biar ga gede banget
+        scene.add(fbx);
       },
-      (xhr) => {
-        console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-      },
-      (error) => {
-        console.error("Error loading FBX:", error);
-      }
+      undefined,
+      (error) => console.error("Error loading FBX:", error)
     );
 
     // Resize
