@@ -1,109 +1,61 @@
-/* ===== Reset dasar ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* {margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif;}
+body { background:#0f0f0f; color:#fff; }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
-}
-
-/* ===== Header & Nav ===== */
 header {
-  background: #333;
-  color: white;
-  padding: 10px 20px;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1rem 2rem; background:#111; position:sticky; top:0; z-index:10;
 }
+header h1 { font-size:1.5rem; color:#00ffc6; }
+nav a { color:#fff; margin:0 1rem; text-decoration:none; transition:.3s; }
+nav a:hover { color:#00ffc6; }
 
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.hero {
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  height:80vh; text-align:center; padding:2rem;
 }
-
-/* Logo */
-nav h2 {
-  margin: 0;
-  font-size: 20px;
+.hero h2 { font-size:2.5rem; margin-bottom:1rem; }
+.hero p { max-width:600px; margin:0 auto 2rem; color:#aaa; }
+.btn {
+  background:#00ffc6; color:#000; padding:.8rem 1.5rem;
+  border-radius:25px; text-decoration:none; font-weight:bold; transition:.3s;
 }
+.btn:hover { background:#00b38f; color:#fff; }
 
-/* Menu Utama */
-nav ul {
-  list-style: none;
-  display: flex;
-  margin-left: 20px;
+.projects { padding:3rem 2rem; }
+.projects h2 { text-align:center; margin-bottom:2rem; color:#00ffc6; }
+.project-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  gap:1.5rem;
 }
-
-nav ul li {
-  margin: 0 10px;
+.model-card {
+  background:#1c1c1c; border-radius:12px; padding:1rem; text-align:center;
+  box-shadow:0 0 15px rgba(0,255,198,0.2);
 }
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
+model-viewer {
+  width:100%; height:250px; background:#111; border-radius:10px;
 }
-
-/* Search Box */
-.search-container {
-  display: flex;
-  align-items: center;
-  margin-right: 15px;
+.model-card p { margin-top:1rem; color:#ccc; }
+/* Tombol navigasi */
+.card-controls {
+  display:flex; justify-content:center; gap:1rem; margin-top:.5rem;
 }
-
-.search-container input {
-  padding: 5px;
-  font-size: 14px;
-  display: none; /* default disembunyikan */
+.card-controls button {
+  background:#00ffc6; border:none; padding:.5rem 1rem;
+  border-radius:6px; cursor:pointer; font-weight:bold; transition:.3s;
 }
-
-.search-container.show input {
-  display: inline-block; /* muncul pas klik ikon */
+.card-controls button:hover { background:#00b38f; color:#fff; }
+.skills { padding:3rem 2rem; background:#111; text-align:center; }
+.skills h2 { margin-bottom:2rem; color:#00ffc6; }
+.skill-list {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;
 }
-
-.search-container button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
+.skill {
+  background:#1c1c1c; padding:1rem 1.5rem; border-radius:25px;
+  border:1px solid #00ffc6; transition:.3s;
 }
+.skill:hover { background:#00ffc6; color:#000; }
 
-/* Hamburger */
-.hamburger {
-  font-size: 26px;
-  cursor: pointer;
-  user-select: none;
-  display: none; /* default: desktop hidden */
-  position: relative;
-  z-index: 2000; /* biar gak ketutup elemen lain */
-}
-
-/* ===== Mobile Mode ===== */
-@media (max-width: 768px) {
-  nav {
-    flex-wrap: wrap;
-  }
-
-  nav ul {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: #444;
-    padding: 10px 0;
-  }
-
-  nav ul.show {
-    display: flex;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  .search-container {
-    order: -1; /* search tetap sebelum hamburger */
-  }
+footer {
+  text-align:center; padding:1rem; background:#111;
+  margin-top:2rem; font-size:.9rem; color:#aaa;
 }
