@@ -36,7 +36,7 @@ scene.add(dirLight);
 // Load GLTF/GLB
 const loader = new GLTFLoader();
 loader.load(
-  "models/yourmodel.glb", // ganti dengan nama modelmu
+  "models/yourmodel.glb", // ganti nama model sesuai file kamu
   (gltf) => {
     scene.add(gltf.scene);
   },
