@@ -2,56 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sandy Purnama - 3D Portfolio</title>
+  <title>3D Model Viewer</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Three.js -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <!-- GLTF Loader -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/GLTFLoader.js"></script>
+  <!-- Orbit Controls -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Sandy Purnama</h1>
-    <p>3D Artist & Model Designer</p>
-  </header>
+  <h1>My 3D Models</h1>
+  <canvas id="viewer"></canvas>
 
-  <main>
-    <section class="intro">
-      <h2>About Me</h2>
-      <p>I create 3D models for games, animation, and interactive media. Explore my works below.</p>
-    </section>
-
-    <section class="viewer">
-      <h2>3D Showcase</h2>
-      <div id="canvas-container"></div>
-    </section>
-
-    <section class="gallery">
-      <h2>My Works</h2>
-      <div class="grid">
-        <div class="card">
-          <img src="https://via.placeholder.com/300x200" alt="Model 1">
-          <p>Character Design</p>
-        </div>
-        <div class="card">
-          <img src="https://via.placeholder.com/300x200" alt="Model 2">
-          <p>Environment Asset</p>
-        </div>
-        <div class="card">
-          <img src="https://via.placeholder.com/300x200" alt="Model 3">
-          <p>Hard Surface Model</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Sandy Purnama | Built with Three.js & GitHub Pages</p>
-  </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/three@0.150.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.150.0/examples/js/libs/inflate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.150.0/examples/js/loaders/FBXLoader.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.150.0/examples/js/controls/OrbitControls.js"></script>
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
-
