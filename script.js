@@ -1,7 +1,12 @@
 // Setup Three.js scene
 const container = document.getElementById("canvas-container");
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(
+  60,
+  container.clientWidth / container.clientHeight,
+  0.1,
+  1000
+);
 camera.position.set(0, 1, 3);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -18,18 +23,19 @@ const dirLight = new THREE.DirectionalLight(0xffffff, 1);
 dirLight.position.set(5, 10, 7);
 scene.add(dirLight);
 
-// Load 3D model
-const loader = new THREE.GLTFLoader();
+// Load FBX model
+const loader = new THREE.FBXLoader();
 loader.load(
-  "models/sample.glb",
-  (gltf) => {
-    scene.add(gltf.scene);
+  "models/sample.fbx", // ganti dengan nama file FBX kamu
+  (object) => {
+    object.scale.set(0.01, 0.01, 0.01); // FBX biasanya terlalu besar
+    scene.add(object);
   },
   (xhr) => {
-    console.log((xhr.loaded / xhr.total * 100) + "% loaded");
+    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
   },
   (error) => {
-    console.error("Error loading model:", error);
+    console.error("Error loading FBX:", error);
   }
 );
 
