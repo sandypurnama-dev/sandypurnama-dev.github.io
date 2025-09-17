@@ -1,59 +1,60 @@
-// Setup Three.js scene
-const container = document.getElementById("canvas-container");
+// Setup scene, camera, renderer
+const canvas = document.getElementById("viewer");
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x111111);
-
 const camera = new THREE.PerspectiveCamera(
   60,
-  container.clientWidth / container.clientHeight,
+  window.innerWidth / window.innerHeight,
   0.1,
   1000
 );
-camera.position.set(0, 50, 100);
+camera.position.set(0, 1, 3);
 
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(container.clientWidth, container.clientHeight);
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
-container.appendChild(renderer.domElement);
 
-// Orbit controls
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-
-// Lighting
+// Lights
 const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.2);
-hemiLight.position.set(0, 200, 0);
+hemiLight.position.set(0, 20, 0);
 scene.add(hemiLight);
 
 const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-dirLight.position.set(100, 200, 100);
+dirLight.position.set(5, 10, 7);
 scene.add(dirLight);
 
-// FBX Loader
-const loader = new THREE.FBXLoader();
+// Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
 
-function loadFBXModel(path, posX) {
+// Load models.json
+fetch("models/models.json")
+  .then((res) => res.json())
+  .then((models) => {
+    models.forEach((file, index) => {
+      loadModel("models/" + file, index);
+    });
+  })
+  .catch((err) => console.error("Error loading models.json:", err));
+
+// Function load model
+function loadModel(path, index) {
+  const loader = new THREE.GLTFLoader();
   loader.load(
     path,
-    (object) => {
-      object.scale.set(0.05, 0.05, 0.05); // kecilin biar muat
-      object.position.set(posX, 0, 0); // geser biar ga numpuk
-      scene.add(object);
+    (gltf) => {
+      const model = gltf.scene;
+      model.position.set(index * 2, 0, 0); // geser biar nggak numpuk
+      model.scale.set(0.5, 0.5, 0.5); // sesuaikan skala
+      scene.add(model);
     },
-    (xhr) => {
-      console.log(path, (xhr.loaded / xhr.total) * 100 + "% loaded");
-    },
+    undefined,
     (error) => {
-      console.error("Error loading " + path, error);
+      console.error("Error loading model:", path, error);
     }
   );
 }
 
-loadFBXModel("models/BodyFemale.fbx", -50);
-loadFBXModel("models/Class.fbx", 0);
-loadFBXModel("models/Boy.fbx", 50);
-
-// Animate loop
+// Animate
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
@@ -63,7 +64,7 @@ animate();
 
 // Resize
 window.addEventListener("resize", () => {
-  camera.aspect = container.clientWidth / container.clientHeight;
+  camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setSize(window.innerWidth, window.innerHeight);
 });
