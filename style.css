@@ -57,6 +57,7 @@ header nav ul li a:hover {
 
 /* Hamburger Icon */
 .hamburger {
+  margin-left: auto;
   display: none;
   font-size: 24px;
   cursor: pointer;
