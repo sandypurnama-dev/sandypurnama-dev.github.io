@@ -25,3 +25,8 @@ document.getElementById('searchBox').addEventListener('keyup', (e) => {
     searchService();
   }
 });
+
+// Toggle hamburger menu
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navMenu').classList.toggle('show');
+});
