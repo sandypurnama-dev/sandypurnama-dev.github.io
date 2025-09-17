@@ -1,8 +1,6 @@
 // Setup scene, camera, renderer
 const canvas = document.getElementById("viewer");
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x222222);
-
 const camera = new THREE.PerspectiveCamera(
   60,
   window.innerWidth / window.innerHeight,
@@ -24,25 +22,16 @@ const dirLight = new THREE.DirectionalLight(0xffffff, 1);
 dirLight.position.set(5, 10, 7);
 scene.add(dirLight);
 
-// Controls
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
+// Controls (⚡ PENTING: pakai OrbitControls langsung, bukan THREE.OrbitControls)
+const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
 // Load models.json
 fetch("models/models.json")
-  .then((res) => {
-    if (!res.ok) throw new Error("Gagal fetch models.json: " + res.status);
-    return res.json();
-  })
+  .then((res) => res.json())
   .then((models) => {
-    console.log("Daftar model dari JSON:", models);
-    if (!Array.isArray(models)) {
-      throw new Error("models.json bukan array!");
-    }
     models.forEach((file, index) => {
-      const path = "models/" + file;
-      console.log("Coba load:", path);
-      loadModel(path, index);
+      loadModel("models/" + file, index);
     });
   })
   .catch((err) => console.error("Error loading models.json:", err));
@@ -53,21 +42,17 @@ function loadModel(path, index) {
   loader.load(
     path,
     (gltf) => {
-      console.log("✅ Sukses load:", path);
       const model = gltf.scene;
-      model.position.set(index * 2, 0, 0);
-      model.scale.set(0.5, 0.5, 0.5);
+      model.position.set(index * 2, 0, 0); // geser biar nggak numpuk
+      model.scale.set(0.5, 0.5, 0.5); // sesuaikan skala
       scene.add(model);
     },
-    (xhr) => {
-      console.log(`Progress ${path}: ${(xhr.loaded / xhr.total) * 100}%`);
-    },
+    undefined,
     (error) => {
-      console.error("❌ Error load model:", path, error);
+      console.error("Error loading model:", path, error);
     }
   );
 }
-
 
 // Animate
 function animate() {
