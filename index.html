@@ -3,17 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Portfolio - Game Dev</title>
-
-  <!-- Google Model Viewer -->
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-
-  <!-- Styles -->
+  <title>My Portfolio</title>
   <link rel="stylesheet" href="style.css">
+  <!-- model-viewer untuk 3D -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
-
-  <!-- Header -->
   <header>
     <h1>MyPortfolio</h1>
     <nav>
@@ -23,41 +18,41 @@
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h2>Hi, I'm Alex 👾</h2>
-    <p>3D Modeler & Game Developer passionate about creating immersive worlds and interactive experiences.</p>
-    <a href="#projects" class="btn">View My Projects</a>
-  </section>
+  <main>
+    <section id="hero">
+      <h2>Hi, I'm Alex 👾</h2>
+      <p>3D Modeler & Game Developer passionate about creating immersive worlds and interactive experiences.</p>
+      <a href="#projects">View My Projects</a>
+    </section>
 
-  <!-- Projects -->
-  <section class="projects" id="projects">
-    <h2>My 3D Projects</h2>
-    <div class="project-grid" id="projectGrid">
-      <!-- Card akan dimuat dari script.js -->
-    </div>
-  </section>
+    <section id="projects">
+      <h2>My 3D Projects</h2>
+      <div id="projectGrid"></div>
+    </section>
 
-  <!-- Skills -->
-  <section class="skills" id="skills">
-    <h2>Skills & Tools</h2>
-    <div class="skill-list">
-      <div class="skill">Blender</div>
-      <div class="skill">Unity</div>
-      <div class="skill">Unreal Engine</div>
-      <div class="skill">ZBrush</div>
-      <div class="skill">Substance Painter</div>
-      <div class="skill">Maya</div>
-    </div>
-  </section>
+    <section id="skills">
+      <h2>Skills & Tools</h2>
+      <ul>
+        <li>Blender</li>
+        <li>Unity</li>
+        <li>Unreal Engine</li>
+        <li>ZBrush</li>
+        <li>Substance Painter</li>
+        <li>Maya</li>
+      </ul>
+    </section>
 
-  <!-- Footer -->
-  <footer id="contact">
-    <p>Contact me: yourname@email.com</p>
-    <p>&copy; 2025 My Portfolio</p>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: yourname@email.com</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 My Portfolio</p>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Script JS di paling bawah -->
   <script src="script.js"></script>
 </body>
 </html>
