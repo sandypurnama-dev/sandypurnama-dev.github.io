@@ -30,11 +30,19 @@ controls.enableDamping = true;
 
 // Load models.json
 fetch("models/models.json")
-  .then((res) => res.json())
+  .then((res) => {
+    if (!res.ok) throw new Error("Gagal fetch models.json: " + res.status);
+    return res.json();
+  })
   .then((models) => {
-    console.log("Daftar model:", models);
+    console.log("Daftar model dari JSON:", models);
+    if (!Array.isArray(models)) {
+      throw new Error("models.json bukan array!");
+    }
     models.forEach((file, index) => {
-      loadModel("models/" + file, index);
+      const path = "models/" + file;
+      console.log("Coba load:", path);
+      loadModel(path, index);
     });
   })
   .catch((err) => console.error("Error loading models.json:", err));
@@ -45,18 +53,21 @@ function loadModel(path, index) {
   loader.load(
     path,
     (gltf) => {
+      console.log("✅ Sukses load:", path);
       const model = gltf.scene;
-      model.position.set(index * 2, 0, 0); // geser biar tidak menumpuk
+      model.position.set(index * 2, 0, 0);
       model.scale.set(0.5, 0.5, 0.5);
       scene.add(model);
-      console.log("Model loaded:", path);
     },
-    undefined,
+    (xhr) => {
+      console.log(`Progress ${path}: ${(xhr.loaded / xhr.total) * 100}%`);
+    },
     (error) => {
-      console.error("Error loading model:", path, error);
+      console.error("❌ Error load model:", path, error);
     }
   );
 }
+
 
 // Animate
 function animate() {
