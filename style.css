@@ -145,4 +145,32 @@ footer {
   padding: 20px;
 }
 
-/* Responsive*
+/* Responsive Menu */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  header nav ul {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: #333;
+    display: none;
+  }
+
+  header nav ul.show {
+    display: flex;
+  }
+
+  header nav ul li {
+    margin: 15px 0;
+    text-align: center;
+  }
+
+  .search-container.show input {
+    width: 150px;
+  }
+}
